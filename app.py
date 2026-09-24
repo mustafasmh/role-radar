@@ -48,12 +48,14 @@ def create_app():
                 flash(error, "error")
                 return render_template("add.html", application=application, statuses=STATUSES), 400
 
+            # in add_application:
             get_db().execute(
                 """INSERT INTO applications
                 (company, role, status, job_description, job_url, applied_date, notes)
-                VALUES (?, ?, ?, ?, ?, ?, ?)""",
-                tuple(application.values()),
+                VALUES (:company, :role, :status, :job_description, :job_url, :applied_date, :notes)""",
+                application,
             )
+
             get_db().commit()
             flash("Application added.", "success")
             return redirect(url_for("dashboard"))
@@ -78,13 +80,14 @@ def create_app():
                 ), 400
 
             get_db().execute(
-                """UPDATE applications
-                SET company = ?, role = ?, status = ?, job_description = ?,
-                    job_url = ?, applied_date = ?, notes = ?,
-                    updated_at = CURRENT_TIMESTAMP
-                WHERE id = ?""",
-                (*updated_application.values(), application_id),
-            )
+                    """UPDATE applications
+                    SET company = :company, role = :role, status = :status, job_description = :job_description,
+                        job_url = :job_url, applied_date = :applied_date, notes = :notes,
+                        updated_at = CURRENT_TIMESTAMP
+                    WHERE id = :id""",
+                    {**updated_application, "id": application_id},
+                )
+            
             get_db().commit()
             flash("Application updated.", "success")
             return redirect(url_for("dashboard"))
