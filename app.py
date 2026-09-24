@@ -152,11 +152,12 @@ Use only information supported by the candidate resume. Do not invent experience
         try:
             client = genai.Client(api_key=current_app.config["GEMINI_API_KEY"])
             response = client.models.generate_content(
-                model="gemini-2.0-flash",
+                model="gemini-3.6-flash",
                 contents=prompt,
             )
             ai_draft = (response.text or "").strip()
-        except Exception:
+        except Exception as e:
+            print(f"GEMINI ERROR: {type(e).__name__}: {e}")
             flash("Gemini could not create a draft. Please try again.", "error")
             return redirect(url_for("edit_application", application_id=application_id))
 

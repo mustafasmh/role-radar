@@ -14,7 +14,7 @@
                     <p class="mt-1 text-sm text-slate-600">Review and adapt this draft before using it.</p>
                 </div>
                 <form method="post" action="{{ url_for('draft_application', application_id=application['id']) }}">
-                    <button type="submit" class="rounded-lg border border-indigo-300 bg-white px-4 py-2 text-sm font-semibold text-indigo-700 hover:bg-indigo-100">Regenerate</button>
+                    <button type="submit" class="rounded-lg border border-indigo-300 bg-white px-4 py-2 text-sm font-semibold text-indigo-700 hover:bg-indigo-100">Regenerate draft</button>
                 </form>
             </div>
             <textarea readonly rows="16" class="w-full rounded-lg border border-indigo-200 bg-white px-3 py-2.5 text-sm text-slate-700">{{ application['ai_draft'] }}</textarea>
@@ -23,10 +23,10 @@
         <div class="mb-6 flex flex-col gap-3 rounded-xl border border-indigo-200 bg-indigo-50 p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
             <div>
                 <h2 class="font-semibold text-slate-900">Create an AI draft</h2>
-                <p class="mt-1 text-sm text-slate-600">Generate a tailored cover letter and resume bullet suggestions.</p>
+                <p class="mt-1 text-sm text-slate-600">Uses your resume from Settings</p>
             </div>
             <form method="post" action="{{ url_for('draft_application', application_id=application['id']) }}">
-                <button type="submit" class="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700">Generate draft</button>
+                <button type="submit" class="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700">Generate AI draft</button>
             </form>
         </div>
     {% endif %}
