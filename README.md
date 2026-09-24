@@ -89,6 +89,29 @@ Each application can contain:
 - VS Code
 - GitHub Copilot
 
+## ApplyTrack Flask App
+
+The first working version of the application tracker is a small Flask app using
+SQLite directly and Jinja templates. It supports adding, editing, updating the
+status of, and deleting job applications from the dashboard.
+
+### Run locally
+
+```bash
+python3 -m pip install -r requirements.txt
+python3 app.py
+```
+
+Then open `http://127.0.0.1:5000`. The SQLite database is created at
+`instance/applytrack.sqlite3` the first time the app starts.
+
+### Project structure
+
+- `app.py` - Flask app factory, database connection helper, and routes
+- `schema.sql` - applications table definition
+- `templates/` - shared layout, dashboard, and application forms
+- `requirements.txt` - Python dependency list
+
 ---
 
 ## 🏗️ How It Works
