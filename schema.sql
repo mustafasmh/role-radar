@@ -7,12 +7,10 @@ CREATE TABLE IF NOT EXISTS applications (
     job_url TEXT,
     applied_date DATE,
     notes TEXT,
+    ai_draft TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
--- store the generated draft alongside the application
-ALTER TABLE applications ADD COLUMN ai_draft TEXT;
 
 -- single-row table holding your base resume/profile — this feeds every AI draft
 CREATE TABLE IF NOT EXISTS profile (

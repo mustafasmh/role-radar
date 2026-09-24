@@ -1,3 +1,5 @@
 __pycache__/
 *.py[cod]
 instance/*.sqlite3
+.venv/
+.env

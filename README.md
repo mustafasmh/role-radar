@@ -99,18 +99,25 @@ status of, and deleting job applications from the dashboard.
 
 ```bash
 python3 -m pip install -r requirements.txt
+cp .env.example .env
+# Add your Gemini API key to .env
 python3 app.py
 ```
 
 Then open `http://127.0.0.1:5000`. The SQLite database is created at
 `instance/applytrack.sqlite3` the first time the app starts.
 
+Open **Settings** to save your resume text. From an application's edit page,
+use **Generate draft** to create a tailored cover letter and 3-5 resume bullet
+suggestions with Gemini. The app stops at startup with a clear error if
+`GEMINI_API_KEY` is missing.
+
 ### Project structure
 
 - `app.py` - Flask app factory, database connection helper, and routes
 - `schema.sql` - applications table definition
-- `templates/` - shared layout, dashboard, and application forms
-- `requirements.txt` - Python dependency list
+- `templates/` - shared layout, dashboard, settings, and application forms
+- `requirements.txt` - Flask, Gemini, and dotenv dependencies
 
 ---
 
